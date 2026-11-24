@@ -70,4 +70,28 @@ This project uses the following dependencies:
 
 ### More information
 
-More information about the project and progress can be found [here](https://www.home-barista.com/espresso-machines/lelit-marax-t61215-350.html#p723763).
+More information about the project and progress can be found [here](https://www.home-barista.com/espresso-machines/lelit-marax-t61215-350.html#p723763). and [Here] (https://www.reddit.com/r/espresso/comments/jgtw4i/installed_a_diy_shot_timer_on_my_lelit_marax/).
+
+# Lelit MaraX OLED Shot Timer (2026 Upgrade)
+
+Forked from [alexrus/marax_timer](https://github.com/alexrus/marax_timer) with added Wi-Fi telemetry, mobile web dashboard, ntfy push alerts, wireless OTA updates, and an OLED burn-in screensaver.
+
+## What's New
+- **Push notifications (ntfy):** Get an alert on your phone when the machine reaches your desired target temperature. Customize the target temp, title, and message directly from the web dashboard.
+- **Built-in web dashboard (`http://marax.local`):** View live brew/HX temp, steam temp, heating element status, and shot timer from any browser on your local network.
+- **OLED burn-in screensaver:** Switches to a bouncing pixel-art espresso cup with animated steam 10 seconds after the machine is turned off, or after 1 hour of idle time while powered on (still showing live HX temp). Lifting the brew lever wakes the main display back up.
+- **Wireless OTA firmware updates (`http://marax.local/update`):** Flash future `.bin` firmware updates directly over Wi-Fi without removing the ESP8266 from the machine.
+
+## Required Arduino Libraries
+- `Adafruit_GFX`
+- `Adafruit_SSD1306`
+- `Timer` (Simon Monk)
+- Built-in ESP8266 Core libraries (`ESP8266WiFi`, `ESP8266WebServer`, `ESP8266mDNS`, `ESP8266HTTPUpdateServer`, `ESP8266HTTPClient`, `EEPROM`, `SoftwareSerial`, `Wire`)
+
+## Quick Configuration (After Flashing)
+1. Enter your `ssid` and `password` at the top of `marax_timer.ino` before your initial USB upload.
+2. On boot, the OLED displays its local IP address and `http://marax.local`.
+3. Open `http://marax.local` in your phone's browser to view live stats and configure your **ntfy** topic, target temp (`°C`), and alert message.
+4. For future updates, export a binary in Arduino IDE (**Sketch → Export Compiled Binary**) and upload it at `http://marax.local/update`.
+
+---
